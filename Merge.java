@@ -30,7 +30,7 @@ public class Merge {
         a ++;
       }
     }
-    return ans; 
+    return ans;
   }
 
   public static String toString (int[] x) {
@@ -45,8 +45,9 @@ public class Merge {
 
   public static void main (String[] args) {
     int[] test = {2,3,7,3,2,6,8,4};
+    int[] a = {2,3,5,7,8,8,9};
     int[] b = {1,2,3,4};
 
-    System.out.println (toString (merge (test, b)));
+    System.out.println (toString (merge (a, b)));
   }
 }
