@@ -16,17 +16,21 @@ public class Merge {
     int[] ans = new int [one.length + another.length];
     int o = 0;
     int a = 0;
-    for (int i =0 ; i < one.length + another.length; i ++) {
+    int bigger = Math.max (one.length, another.length) - 1 ;
+    int i = 0;
+    while (o < one.length && a < another.length) {
       if (one[o] <= another[a]) {
         ans[i] = one[o];
+        i ++;
         o ++;
       }
       else {
         ans[i] = another[a];
+        i ++;
         a ++;
       }
     }
-    return  ans;
+    return ans; 
   }
 
   public static String toString (int[] x) {
@@ -43,6 +47,6 @@ public class Merge {
     int[] test = {2,3,7,3,2,6,8,4};
     int[] b = {1,2,3,4};
 
-    System.out.println (merge (test, b));
+    System.out.println (toString (merge (test, b)));
   }
 }
