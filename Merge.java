@@ -16,7 +16,6 @@ public class Merge {
     int[] ans = new int [one.length + another.length];
     int o = 0;
     int a = 0;
-    int bigger = Math.max (one.length, another.length) - 1 ;
     int i = 0;
     while (o < one.length && a < another.length) {
       if (one[o] <= another[a]) {
@@ -29,7 +28,8 @@ public class Merge {
         i ++;
         a ++;
       }
-    }
+    } //doesnt fill everything
+
     return ans;
   }
 
