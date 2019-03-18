@@ -13,13 +13,36 @@ public class Merge {
   }
 
   private static int[] merge (int [] one, int[] another) {
-    int ans = new int [one.length + another.length];
-    int len = Math.min (one.length, another.length);
-    int index = 0;
-    for (int i = 0; i < len; i ++) {
-      int o = one[i];
-      int a = another[i]; 
+    int[] ans = new int [one.length + another.length];
+    int o = 0;
+    int a = 0;
+    for (int i =0 ; i < one.length + another.length; i ++) {
+      if (one[o] <= another[a]) {
+        ans[i] = one[o];
+        o ++;
+      }
+      else {
+        ans[i] = another[a];
+        a ++;
+      }
     }
-    return ans;
+    return  ans;
+  }
+
+  public static String toString (int[] x) {
+    String ans = "[";
+     for (int i = 0; i < x.length; i ++) {
+       if (i != x.length - 1) {
+         ans += x[i] + " ";
+       }
+     }
+    return ans + "]";
+  }
+
+  public static void main (String[] args) {
+    int[] test = {2,3,7,3,2,6,8,4};
+    int[] b = {1,2,3,4};
+
+    System.out.println (merge (test, b));
   }
 }
