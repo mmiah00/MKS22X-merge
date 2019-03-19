@@ -14,6 +14,7 @@ public class Merge {
 
   private static int[] merge (int [] one, int[] another) {
     int[] ans = new int [one.length + another.length];
+    /*
     int o = 0;
     int a = 0;
     int i = 0;
@@ -29,6 +30,40 @@ public class Merge {
         a ++;
       }
     } //doesnt fill everything
+    */
+
+    int i = 0;
+    int o = 0;
+    int a = 0;
+    while (i < ans.length) {
+      try {
+        if (o >= one.length) {
+          for (int x = a; x < ans.length; x ++) {
+            ans[i] = another[x];
+            i ++;
+          }
+        }
+        if (a >= another.length) {
+          for (int x = o; x < ans.length; x ++) {
+            ans[i] = one[x];
+            i ++;
+          }
+        }
+        if (one[o] <= another[a]) {
+          ans[i] = one[o];
+          i ++;
+          o ++;
+        }
+        else {
+          ans[i] = another[a];
+          i ++;
+          a ++;
+        }
+      }
+      catch (IndexOutOfBoundsException e) {
+
+      }
+    }
 
     return ans;
   }
