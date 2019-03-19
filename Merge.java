@@ -13,7 +13,7 @@ public class Merge {
   }
 
   private static int[] merge (int [] one, int[] another) {
-    int[] ans = new int [one.length + another.length];
+    int[] ans = new int [one.length + another.length + 1];
     /*
     int o = 0;
     int a = 0;
@@ -82,7 +82,10 @@ public class Merge {
     int[] test = {2,3,7,3,2,6,8,4};
     int[] a = {2,3,5,7,8,8,9};
     int[] b = {1,2,3,4};
+    int[] c = {3,5,8,9,11,12};
+    int[] d = {2,7,9,18};
 
     System.out.println (toString (merge (a, b)));
+    System.out.println (toString (merge (c, d)));
   }
 }
