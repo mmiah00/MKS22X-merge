@@ -5,38 +5,25 @@ public class Merge {
   }
 
   private static int[] mergesort (int[] data, int lo, int hi) {
-    if (lo >= hi) {
-      return data;
-    }
     int mid = hi / 2; //dividing in half
-    return merge (mergesort (data, lo, mid), mergesort (data, mid + 1, hi));
+    if (lo >= hi) {
+      int[] ans = {data[lo]};
+      return ans; 
+      //return merge (mergesort (data, lo, mid + 1), mergesort (data, mid + 1, hi + 1));
+    }
+    //return mergesort  (data, lo, mid +1);
+    //mergesort (data, mid + 1, hi + 1);
+    return merge (mergesort (data, lo, mid), mergesort (data,mid + 1, hi));
   }
 
   private static int[] merge (int [] one, int[] another) {
-    int[] ans = new int [one.length + another.length + 1];
-    /*
-    int o = 0;
-    int a = 0;
-    int i = 0;
-    while (o < one.length && a < another.length) {
-      if (one[o] <= another[a]) {
-        ans[i] = one[o];
-        i ++;
-        o ++;
-      }
-      else {
-        ans[i] = another[a];
-        i ++;
-        a ++;
-      }
-    } //doesnt fill everything
-    */
-
-    int i = 0;
-    int o = 0;
-    int a = 0;
+    int[] ans = new int [one.length + another.length ];
+    int i = 0; //keeps track of numbers you are adding to ans
+    int o = 0; //keeps track of index of int[] one
+    int a = 0; //keeps track of index of int[] another
     while (i < ans.length) {
       try {
+        //if you reach the end of the shorter list, add the trailing values of the longer list to the answer
         if (o >= one.length) {
           for (int x = a; x < ans.length; x ++) {
             ans[i] = another[x];
@@ -49,6 +36,8 @@ public class Merge {
             i ++;
           }
         }
+
+        //add the greater value to the answer
         if (one[o] <= another[a]) {
           ans[i] = one[o];
           i ++;
@@ -74,6 +63,9 @@ public class Merge {
        if (i != x.length - 1) {
          ans += x[i] + " ";
        }
+       else {
+         ans += x[i];
+       }
      }
     return ans + "]";
   }
@@ -84,8 +76,11 @@ public class Merge {
     int[] b = {1,2,3,4};
     int[] c = {3,5,8,9,11,12};
     int[] d = {2,7,9,18};
+    int[] e = {1,2,3,4,5,6};
+    int[] f = {7,8,9,10,11};
 
     System.out.println (toString (merge (a, b)));
     System.out.println (toString (merge (c, d)));
+    System.out.println (toString (merge (e, f)));
   }
 }
