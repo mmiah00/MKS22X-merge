@@ -1,16 +1,16 @@
 public class Merge {
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[]data){
-    mergesort (data, 0, data.length -1);
+    mergesort (data, 0, data.length - 1);
   }
 
   private static int[] mergesort (int[] data, int lo, int hi) {
-    int mid = hi / 2; //dividing in half
     if (lo >= hi) {
       int[] ans = {data[lo]};
-      return ans; 
+      return ans;
       //return merge (mergesort (data, lo, mid + 1), mergesort (data, mid + 1, hi + 1));
     }
+    int mid = (lo +hi ) / 2; //dividing in half
     //return mergesort  (data, lo, mid +1);
     //mergesort (data, mid + 1, hi + 1);
     return merge (mergesort (data, lo, mid), mergesort (data,mid + 1, hi));
@@ -72,15 +72,21 @@ public class Merge {
 
   public static void main (String[] args) {
     int[] test = {2,3,7,3,2,6,8,4};
-    int[] a = {2,3,5,7,8,8,9};
+    int[] a = {99,82,3,4,22,20,11,1};
     int[] b = {1,2,3,4};
-    int[] c = {3,5,8,9,11,12};
+    int[] c = {12,9,11,5,8,3};
     int[] d = {2,7,9,18};
     int[] e = {1,2,3,4,5,6};
     int[] f = {7,8,9,10,11};
 
+    /*
     System.out.println (toString (merge (a, b)));
     System.out.println (toString (merge (c, d)));
     System.out.println (toString (merge (e, f)));
+    */
+    System.out.println (toString (mergesort (test, 0, test.length - 1)));
+    System.out.println (toString (mergesort (a, 0, a.length - 1)));
+    System.out.println (toString (mergesort (b, 0, b.length - 1)));
+    System.out.println (toString (mergesort (c, 0, c.length - 1)));
   }
 }
