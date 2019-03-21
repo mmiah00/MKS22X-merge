@@ -1,34 +1,60 @@
 public class Merge {
   /*sort the array from least to greatest value. This is a wrapper function*/
-  public static void mergesort(int[]data){
+  public static void mergesort(int[] data){
     mergesort (data, 0, data.length - 1);
   }
 
   private static void mergesort (int[] data, int lo, int hi) {
     if (lo >= hi) {
-      return ;
+      return;
     }
-    int mid = (lo + hi) / 2 - 1;
-    mergesort (data, lo, mid);
-    mergesort (data, mid + 1, hi);
-    merge (data, lo, mid, hi);
+    int mid = (lo + hi)/ 2;
+    mergesort(data, lo, mid);
+    mergesort(data, mid + 1, hi);
+    merge(data, lo, mid, hi);
   }
 
   private static void merge (int[] data, int lo, int middle, int hi) {
+    System.out.println (toString (data));
     int[] left = new int[middle - lo + 1];
     for (int i = 0; i < left.length; i ++) {
       left[i] = data[lo + i];
     }
+    System.out.println (toString (left));
     int[] right = new int [hi  - middle];
     for (int i =0 ; i < right.length; i ++){
       right [i] = data[middle + i + 1];
     }
+    System.out.println (toString (right));
 
-    int[] ans = merge (left, right);
-    int index = 0;
-    for (int i = lo; i < lo + ans.length; i++) {
-      data [i] = ans [index];
-      index ++;
+    int l = 0; //keeping track of left
+    int r = 0; //keeping track of right
+    int i = lo; //keeping track of index in data
+
+    while (i < hi) {
+      if (l < left.length && r < right.length) {
+        if (left[l] <= right[r]) {
+          data[i] = left[l];
+          i ++;
+          l ++;
+        }
+
+        else {
+          data[i] = right[r];
+          i ++;
+          r ++;
+        }
+      }
+      if (l < left.length && r >= right.length) {
+        data[i] = left[l];
+        i ++;
+        l ++;
+      }
+      else {
+        data[i] = right[r];
+        i ++;
+        r ++;
+      }
     }
     System.out.println (toString (data));
    }
@@ -94,12 +120,25 @@ public class Merge {
   }
   */
 
+  /*
   private static int[] merge (int [] one, int[] another) {
     int[] ans = new int [one.length + another.length ];
     int i = 0; //keeps track of numbers you are adding to ans
     int o = 0; //keeps track of index of int[] one
     int a = 0; //keeps track of index of int[] another
     while (i < ans.length) {
+      if (one.length == another.length) {
+        if (one[o] <= another[a]) {
+          ans[i] = one[o];
+          i ++;
+          o ++;
+        }
+        else {
+          ans[i] = another[a];
+          i ++;
+          a ++;
+        }
+      }
       try {
         //if you reach the end of the shorter list, add the trailing values of the longer list to the answer
         if (o >= one.length) {
@@ -134,6 +173,7 @@ public class Merge {
 
     return ans;
   }
+  */
 
 
 
@@ -212,6 +252,7 @@ public class Merge {
     System.out.println (toString (merge (e, f)));
     */
 
+    //System.out.println (toString (merge (new int[] {2,3,7,3}, new int [] {2,6,8,4})));
     merge (test, 0, (test.length - 1)/2, test.length - 1);
 
     /*
