@@ -1,20 +1,57 @@
 public class Merge {
   /*sort the array from least to greatest value. This is a wrapper function*/
   public static void mergesort(int[] data){
-    mergesort (data, 0, data.length - 1);
+    mergesort(data, 0, data.length -1);
   }
 
-  private static void mergesort (int[] data, int lo, int hi) {
+  public static void mergesort(int[] data, int lo, int hi){
     if (lo >= hi) {
       return;
     }
-    int mid = (lo + hi)/ 2;
+    int mid = (lo + hi)/2;
     mergesort(data, lo, mid);
     mergesort(data, mid + 1, hi);
     merge(data, lo, mid, hi);
   }
 
-  private static void merge (int[] data, int lo, int middle, int hi) {
+  private static void merge (int[] data, int lo, int divide, int hi) {
+    int[] left = new int[divide - lo + 1];
+    for (int a = 0; a < left.length; a ++) {
+      left[a] = data[lo+ a];
+    }
+
+    int[] right = new int [hi -divide];
+    for (int b = 0; b < right.length; b ++) {
+      right[b] = data[divide+ b+1 ];
+    }
+
+    int l = 0;
+    int r = 0;
+    while (l < left.length && r < right.length) {
+
+      if (left[l] < right[r]) {
+        data[lo] = left[l];
+        l++;
+      }
+      else {
+        data[lo] = right[r];
+        r++;
+      }
+      lo++;
+    }
+     //if one is greater than the other, start filling in the trailing values 
+    while (r < right.length) {
+      data[lo] = right[r];
+      r++;
+      lo++;
+    }
+    while (l < left.length) {
+      data[lo] = left[l];
+      l++;
+      lo++;
+    }
+    //System.out.println (toString (data));
+    /*
     System.out.println (toString (data));
     int[] left = new int[middle - lo + 1];
     for (int i = 0; i < left.length; i ++) {
@@ -57,6 +94,7 @@ public class Merge {
       }
     }
     System.out.println (toString (data));
+    */
    }
 
   /*
@@ -253,7 +291,7 @@ public class Merge {
     */
 
     //System.out.println (toString (merge (new int[] {2,3,7,3}, new int [] {2,6,8,4})));
-    merge (test, 0, (test.length - 1)/2, test.length - 1);
+    merge (test, 0, 3, 7);
 
     /*
     System.out.println (toString (mergesort (test, 0, test.length - 1)));
