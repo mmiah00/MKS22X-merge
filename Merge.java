@@ -8,17 +8,38 @@ public class Merge {
     if (lo >= hi) {
       return ;
     }
-    int mid = (lo + hi) / 2;
+    int mid = (lo + hi) / 2 - 1;
     mergesort (data, lo, mid);
     mergesort (data, mid + 1, hi);
     merge (data, lo, mid, hi);
   }
 
-  public static void merge (int[] data, int lo, int middle, int hi) {
+  private static void merge (int[] data, int lo, int middle, int hi) {
+    int[] left = new int[middle - lo + 1];
+    for (int i = 0; i < left.length; i ++) {
+      left[i] = data[lo + i];
+    }
+    int[] right = new int [hi  - middle];
+    for (int i =0 ; i < right.length; i ++){
+      right [i] = data[middle + i + 1];
+    }
+
+    int[] ans = merge (left, right);
+    int index = 0;
+    for (int i = lo; i < lo + ans.length; i++) {
+      data [i] = ans [index];
+      index ++;
+    }
+    System.out.println (toString (data));
+   }
+
+  /*
+  private static void merge (int[] data, int lo, int middle, int hi) {
+    System.out.println ("Data: " + toString (data) + "\nlo: " + data[lo] + "\nmiddle: " + data[middle] + "\nend: " + data[hi]);
     int[] ans = new int[hi - lo + 1];
     int i = 0; //keeping track of index in data
     int left = lo; //keeping track of left side
-    int right = middle + 1;
+    int right = middle;
     while (i < ans.length) {
       if (left > middle) {
         for (int x = right; x < ans.length; x ++) {
@@ -51,11 +72,13 @@ public class Merge {
     }
 
     int index = 0;
-    for (int a = lo; a < hi; a ++) {
+    for (int a = lo; a <= hi; a ++) {
       data[a] = ans[index];
-      index ++; 
+      index ++;
     }
+    System.out.println (data);
   }
+  */
 
   /*
   private static int[] mergesort (int[] data, int lo, int hi) {
@@ -69,6 +92,7 @@ public class Merge {
     //mergesort (data, mid + 1, hi + 1);
     return merge (mergesort (data, lo, mid), mergesort (data,mid + 1, hi));
   }
+  */
 
   private static int[] merge (int [] one, int[] another) {
     int[] ans = new int [one.length + another.length ];
@@ -110,7 +134,7 @@ public class Merge {
 
     return ans;
   }
-  */
+
 
 
 
@@ -188,8 +212,7 @@ public class Merge {
     System.out.println (toString (merge (e, f)));
     */
 
-
-
+    merge (test, 0, (test.length - 1)/2, test.length - 1);
 
     /*
     System.out.println (toString (mergesort (test, 0, test.length - 1)));
